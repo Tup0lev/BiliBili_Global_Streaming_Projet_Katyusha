@@ -20,13 +20,13 @@ they are not afraid of anything
 import subprocess
 
 #define variables
-destination = "rtmp://js.live-send.acg.tv/live-js/?streamname=live_218408251_44562509&key=aa839afbd05edd2b7f48e409a3f83d30"
-proxy = "127.0.0.1:7890"
-youtube = "https://www.youtube.com/watch?v=3s8iJRdqa3s"
+destination = "<RTMP SERVER>/<KEY>" #DESTINATION
+proxy = "ip_addr:port" #MUST BE HTTP PROXY
+youtube = "URL" #YOUTUBE SOURCE URL
 
 #core processes
-_streamlink_process = subprocess.Popen(('streamlink', '--http-proxy', proxy, youtube, 'best', '-o', '-'), stdout=subprocess.PIPE)
-_ffmpeg_process = subprocess.Popen(('ffmpeg', '-i', '-', '-acodec', 'aac' ,'-vcodec', 'copy', '-f','flv', destination ), stdin=_streamlink_process.stdout)
+_streamlink_process = subprocess.Popen(('streamlink', '--http-proxy', proxy, youtube, 'best', '-o', '-'), stdout=subprocess.PIPE) 
+_ffmpeg_process = subprocess.Popen(('ffmpeg', '-i', '-', '-acodec', 'aac' ,'-vcodec', 'copy', '-f','flv', destination ), stdin=_streamlink_process.stdout) #Try both aac and copy for audio codec in case one of them doesn't work 
 
 
 '''
