@@ -42,8 +42,8 @@ they are not afraid of anything!
 From ShangHai the wolves are coming
 wolves coming!
 
-Beware of PiXiaoJiang and censorer
-PiXiaoJiang and censorer!
+Beware of Pilipili-Fanboys and censorer
+fanboys and censorer!
 
 Overieda lead the pilipili resistance
 lead pilipili resistance!
