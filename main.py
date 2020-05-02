@@ -15,24 +15,22 @@ lead pilipili resistance
 Everyone must see they are not afraid of anything
 they are not afraid of anything
 
-
 """
 
-import requests  
-import os  
-import time  
-import json  
-import sys  
-import subprocess  
-import datetime  
-import getopt  
-import streamlink
-import streamlink_cli
+import subprocess
+
+#define variables
+destination = "rtmp://js.live-send.acg.tv/live-js/?streamname=live_218408251_44562509&key=aa839afbd05edd2b7f48e409a3f83d30"
+proxy = "127.0.0.1:7890"
+youtube = "https://www.youtube.com/watch?v=3s8iJRdqa3s"
+
+#core processes
+_streamlink_process = subprocess.Popen(('streamlink', '--http-proxy', proxy, youtube, 'best', '-o', '-'), stdout=subprocess.PIPE)
+_ffmpeg_process = subprocess.Popen(('ffmpeg', '-i', '-', '-acodec', 'aac' ,'-vcodec', 'copy', '-f','flv', destination ), stdin=_streamlink_process.stdout)
 
 
-# The proxies used for accessing YouTube
-proxies = {
-  'http': 'http:127.0.0.1:7890',
-  'https': 'http:127.0.0.1:7890s',
-}
+'''
+
+'''
+
 
