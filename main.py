@@ -80,6 +80,7 @@ destlink = StringVar()
 destkey = StringVar()
 
 def setup():
+    wholeproxy = proxy.get()+":"+port.get()
     destination = destlink.get()+destkey.get()
     _streamlink_process = subprocess.Popen(('streamlink', '--http-proxy', proxy.get(), source.get(), 
                                             'best', '-o', '-'), stdout=subprocess.PIPE) 
