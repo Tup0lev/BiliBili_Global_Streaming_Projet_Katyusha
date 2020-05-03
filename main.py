@@ -20,7 +20,6 @@ lead pilipili resistance!
 Everyone must see they are not afraid of anything
 they are not afraid of anything!
 
-
 The ChenRui Empire is awaking
 ChenRui Empire!
 陳ルイの帝国は目覚めている
@@ -67,11 +66,12 @@ they are not afraid of anything!
 
 import subprocess
 from tkinter import *
+import os
 
 CykaForm = Tk()
 
 
-LblTtl = Label(CykaForm, text="Cykaaaaa")
+LblTtl = Label(CykaForm, text="批哩批哩海外主播转播项目")
 
 proxy= StringVar()
 port = StringVar()
@@ -79,7 +79,7 @@ source = StringVar()
 destlink = StringVar()
 destkey = StringVar()
 
-def setup():
+def startup():
     wholeproxy = proxy.get()+":"+port.get()
     destination = destlink.get()+destkey.get()
     _streamlink_process = subprocess.Popen(('streamlink', '--http-proxy', wholeproxy, source.get(), 
@@ -87,23 +87,32 @@ def setup():
     _ffmpeg_process = subprocess.Popen(('ffmpeg', '-i', '-', '-acodec', 'aac' ,'-vcodec','copy', '-f','flv',
                                         destination ), stdin=_streamlink_process.stdout) #Try both aac and copy for acodec |||| USE -bsf when prompted if using ffmpeg3
     
-LblTtl = Label(CykaForm, text="Cykaaaaa")
-LblPxy = Label(CykaForm, text="http proxy代理")
+    
+    
+#GUI Elements
+    
+CykaForm.title('Pilipili Resistance presents')
+canvas = Canvas(CykaForm, width = 500, height = 150)           
+imgdonate = PhotoImage(file="donate.gif")      
+canvas.create_image(0,0, anchor=NW, image=imgdonate) 
+
+LblPxy = Label(CykaForm, text="http proxy用于访问YouTube的http代理")
 EntPxy = Entry(CykaForm, textvariable=proxy)
 LblPrt = Label(CykaForm, text="port端口")
 EntPrt = Entry(CykaForm, textvariable=port)
-LblUtb = Label(CykaForm, text="source转播源")
+LblUtb = Label(CykaForm, text="source转播源 请复制YouTube链接或短链")
 EntUtb = Entry(CykaForm, textvariable=source)
 LblDsl = Label(CykaForm, text="destlink批哩批哩直播链接")
 EntDsl = Entry(CykaForm, textvariable=destlink)
 LblDsk = Label(CykaForm, text="destkey批哩批哩直播码")
 EntDsk = Entry(CykaForm, textvariable=destkey)
-BtnSet = Button(CykaForm, text="set", command=setup)
+BtnSet = Button(CykaForm, text="start开始", command=startup)
 
 LblTtl.grid(row=0, column=0)
 
 
 
+canvas.pack()
 LblTtl.pack()
 LblPxy.pack()
 EntPxy.pack()
@@ -117,3 +126,23 @@ LblDsk.pack()
 EntDsk.pack()
 BtnSet.pack()
 CykaForm.mainloop()
+<<<<<<< HEAD
+
+#define variables
+'''
+destination = "<RTMP SERVER>/<KEY>" #DESTINATION
+proxy = "ip_addr:port" #MUST BE HTTP PROXY
+youtube = "URL" #YOUTUBE SOURCE URL
+'''
+
+'''
+#core processes
+_streamlink_process = subprocess.Popen(('streamlink', '--http-proxy', proxy, youtube, 'best', '-o', '-'), stdout=subprocess.PIPE) 
+_ffmpeg_process = subprocess.Popen(('ffmpeg', '-i', '-', '-acodec', 'aac' ,'-vcodec', 'copy', '-f','flv', destination ), stdin=_streamlink_process.stdout) #Try both aac and copy for audio codec in case one of them doesn't work 
+'''
+#TODO: add options to change parameters
+
+'''
+
+'''
+
