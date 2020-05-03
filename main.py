@@ -126,22 +126,3 @@ LblDsk.pack()
 EntDsk.pack()
 BtnSet.pack()
 CykaForm.mainloop()
-
-#define variables
-'''
-destination = "<RTMP SERVER>/<KEY>" #DESTINATION
-proxy = "ip_addr:port" #MUST BE HTTP PROXY
-youtube = "URL" #YOUTUBE SOURCE URL
-'''
-
-'''
-#core processes
-_streamlink_process = subprocess.Popen(('streamlink', '--http-proxy', proxy, youtube, 'best', '-o', '-'), stdout=subprocess.PIPE) 
-_ffmpeg_process = subprocess.Popen(('ffmpeg', '-i', '-', '-acodec', 'aac' ,'-vcodec', 'copy', '-f','flv', destination ), stdin=_streamlink_process.stdout) #Try both aac and copy for audio codec in case one of them doesn't work 
-'''
-#TODO: add options to change parameters
-
-'''
-
-'''
-
