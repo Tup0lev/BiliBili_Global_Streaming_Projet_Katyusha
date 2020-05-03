@@ -85,7 +85,7 @@ def setup():
     _streamlink_process = subprocess.Popen(('streamlink', '--http-proxy', wholeproxy, source.get(), 
                                             'best', '-o', '-'), stdout=subprocess.PIPE) 
     _ffmpeg_process = subprocess.Popen(('ffmpeg', '-i', '-', '-acodec', 'aac' ,'-vcodec','copy', '-f','flv',
-                                        destination ), stdin=_streamlink_process.stdout)
+                                        destination ), stdin=_streamlink_process.stdout) #Try both aac and copy for acodec |||| USE -bsf when prompted if using ffmpeg3
     
 LblTtl = Label(CykaForm, text="Cykaaaaa")
 LblPxy = Label(CykaForm, text="http proxy代理")
@@ -117,24 +117,3 @@ LblDsk.pack()
 EntDsk.pack()
 BtnSet.pack()
 CykaForm.mainloop()
-
-
-#define variables
-'''
-destination = "<RTMP SERVER>/<KEY>" #DESTINATION
-proxy = "ip_addr:port" #MUST BE HTTP PROXY
-youtube = "URL" #YOUTUBE SOURCE URL
-'''
-
-'''
-#core processes
-_streamlink_process = subprocess.Popen(('streamlink', '--http-proxy', proxy, youtube, 'best', '-o', '-'), stdout=subprocess.PIPE) 
-_ffmpeg_process = subprocess.Popen(('ffmpeg', '-i', '-', '-acodec', 'aac' ,'-vcodec', 'copy', '-f','flv', destination ), stdin=_streamlink_process.stdout) #Try both aac and copy for audio codec in case one of them doesn't work 
-'''
-#TODO: add options to change parameters
-
-'''
-
-'''
-
-
