@@ -23,7 +23,7 @@
 转播MAN的工作  
   
 首次运行前的配置工作
-此教程仅适用windows 其他平台大同小异请自己解决
+此教程仅适用windows 其他平台大同小异请自己解决  
 下载本项目为zip并解压缩  
 安装python 3  
 	打开 https://www.python.org/downloads/ 下载并安装一个和你操作系统相符的python 3  
