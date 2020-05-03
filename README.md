@@ -1,6 +1,6 @@
 # BiliBili_Global_Streaming_Project_Katyusha
 解决海外主播无法在哔哩哔哩直播的“系统升级中”问题  
-
+[![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)
 解决海外主播无法在批哩批哩直播的问题  
 “Remove ChenRui Resistance Stronk”  
   
