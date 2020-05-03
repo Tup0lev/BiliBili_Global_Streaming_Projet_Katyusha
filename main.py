@@ -66,17 +66,70 @@ they are not afraid of anything!
 """
 
 import subprocess
+from tkinter import *
+
+CykaForm = Tk()
+
+
+LblTtl = Label(CykaForm, text="Cykaaaaa")
+
+proxy= StringVar()
+port = StringVar()
+source = StringVar()
+destlink = StringVar()
+destkey = StringVar()
+
+def setup():
+    destination = destlink.get()+destkey.get()
+    _streamlink_process = subprocess.Popen(('streamlink', '--http-proxy', proxy.get(), source.get(), 
+                                            'best', '-o', '-'), stdout=subprocess.PIPE) 
+    _ffmpeg_process = subprocess.Popen(('ffmpeg', '-i', '-', '-acodec', 'aac' ,'-vcodec','copy', '-f','flv',
+                                        destination ), stdin=_streamlink_process.stdout)
+    
+LblTtl = Label(CykaForm, text="Cykaaaaa")
+LblPxy = Label(CykaForm, text="http proxy代理")
+EntPxy = Entry(CykaForm, textvariable=proxy)
+LblPrt = Label(CykaForm, text="port端口")
+EntPrt = Entry(CykaForm, textvariable=port)
+LblUtb = Label(CykaForm, text="source转播源")
+EntUtb = Entry(CykaForm, textvariable=source)
+LblDsl = Label(CykaForm, text="destlink批哩批哩直播链接")
+EntDsl = Entry(CykaForm, textvariable=destlink)
+LblDsk = Label(CykaForm, text="destkey批哩批哩直播码")
+EntDsk = Entry(CykaForm, textvariable=destkey)
+BtnSet = Button(CykaForm, text="set", command=setup)
+
+LblTtl.grid(row=0, column=0)
+
+
+
+LblTtl.pack()
+LblPxy.pack()
+EntPxy.pack()
+LblPrt.pack()
+EntPrt.pack()
+LblUtb.pack()
+EntUtb.pack()
+LblDsl.pack()
+EntDsl.pack()
+LblDsk.pack()
+EntDsk.pack()
+BtnSet.pack()
+CykaForm.mainloop()
 
 
 #define variables
+'''
 destination = "<RTMP SERVER>/<KEY>" #DESTINATION
 proxy = "ip_addr:port" #MUST BE HTTP PROXY
 youtube = "URL" #YOUTUBE SOURCE URL
+'''
 
+'''
 #core processes
 _streamlink_process = subprocess.Popen(('streamlink', '--http-proxy', proxy, youtube, 'best', '-o', '-'), stdout=subprocess.PIPE) 
 _ffmpeg_process = subprocess.Popen(('ffmpeg', '-i', '-', '-acodec', 'aac' ,'-vcodec', 'copy', '-f','flv', destination ), stdin=_streamlink_process.stdout) #Try both aac and copy for audio codec in case one of them doesn't work 
-
+'''
 #TODO: add options to change parameters
 
 '''
