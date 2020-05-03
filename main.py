@@ -126,7 +126,6 @@ LblDsk.pack()
 EntDsk.pack()
 BtnSet.pack()
 CykaForm.mainloop()
-<<<<<<< HEAD
 
 #define variables
 '''
