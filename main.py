@@ -82,7 +82,7 @@ destkey = StringVar()
 def setup():
     wholeproxy = proxy.get()+":"+port.get()
     destination = destlink.get()+destkey.get()
-    _streamlink_process = subprocess.Popen(('streamlink', '--http-proxy', proxy.get(), source.get(), 
+    _streamlink_process = subprocess.Popen(('streamlink', '--http-proxy', wholeproxy, source.get(), 
                                             'best', '-o', '-'), stdout=subprocess.PIPE) 
     _ffmpeg_process = subprocess.Popen(('ffmpeg', '-i', '-', '-acodec', 'aac' ,'-vcodec','copy', '-f','flv',
                                         destination ), stdin=_streamlink_process.stdout)
