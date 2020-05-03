@@ -16,7 +16,7 @@
 转播MAN的软件依赖：不老掉牙的Windows, Mac OS X 或Linux（小 心 a p t）,只要能运行 Python3, Streamlink1.3.1+, ffmpeg4+就行 连接速度10Mbps以上 丢包低的梯子 梯子越快越好
   
 主播的准备工作  
-	注册一个youtube账号并申请直播，直播间选择Normal Latency并关闭DVR， 在obs/Xsplit中填入youtube的直播链接和直播码（不支持批哩批哩直播鸡），向YouTube推流，并将YouTube直播间链接、你的批哩批哩直播链接、你的批哩批哩直播码告诉转播MAN  
+	注册一个youtube账号并申请直播，直播间选择Normal Latency并关闭DVR， 在obs/Xsplit中填入youtube的直播链接和直播码（不支持批哩批哩直播鸡 如果你只会用批哩批哩直播鸡的话要么改用OBS要么去俯首帖耳找超管），向YouTube推流，并将YouTube直播间链接、你的批哩批哩直播链接、你的批哩批哩直播码告诉转播MAN  
   
   
   
