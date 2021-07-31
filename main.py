@@ -66,6 +66,7 @@ they are not afraid of anything!
 
 import subprocess
 from tkinter import *
+from tkinter import messagebox
 import os
 import time
 
@@ -82,15 +83,19 @@ destkey = StringVar()
 
 def startup():
 
-	while true:
+	if (proxy.get() == "" or port.get() == "" or source.get() == "" or destlink.get() == "" or destkey.get() == ""):
+		messagebox.showinfo("你没填完整啊", "空着干嘛？")
 
-    	wholeproxy = proxy.get()+":"+port.get()
-    	destination = destlink.get()+destkey.get()
-    	_streamlink_process = subprocess.Popen(('streamlink', '--http-proxy', wholeproxy, source.get(), 
+	while True:
+
+		wholeproxy = proxy.get()+":"+port.get()
+		destination = destlink.get()+destkey.get()
+		_streamlink_process = subprocess.Popen(('streamlink.bat', '--http-proxy', wholeproxy, source.get(), 
                                             'best', '-o', '-'), stdout=subprocess.PIPE) 
-   		_ffmpeg_process = subprocess.Popen(('ffmpeg', '-i', '-', '-acodec', 'aac' ,'-vcodec','copy', '-f','flv',
+		print("asdf")
+		_ffmpeg_process = subprocess.Popen(('ffmpeg/ffmpeg.exe', '-i', '-', '-acodec', 'aac' ,'-vcodec','copy', '-f','flv',
                                         destination ), stdin=_streamlink_process.stdout) #Try both aac and copy for acodec |||| USE -bsf when prompted if using ffmpeg3
-   		time.sleep(5)
+		time.sleep(5)
     
     
     
@@ -113,9 +118,7 @@ LblDsk = Label(CykaForm, text="destkey批哩批哩直播码")
 EntDsk = Entry(CykaForm, textvariable=destkey)
 BtnSet = Button(CykaForm, text="start开始", command=startup)
 
-LblTtl.grid(row=0, column=0)
-
-
+LblTtl.pack()
 
 canvas.pack()
 LblTtl.pack()
