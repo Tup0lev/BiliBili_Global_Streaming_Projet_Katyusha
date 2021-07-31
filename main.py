@@ -67,6 +67,7 @@ they are not afraid of anything!
 import subprocess
 from tkinter import *
 import os
+import time
 
 CykaForm = Tk()
 
@@ -80,12 +81,16 @@ destlink = StringVar()
 destkey = StringVar()
 
 def startup():
-    wholeproxy = proxy.get()+":"+port.get()
-    destination = destlink.get()+destkey.get()
-    _streamlink_process = subprocess.Popen(('streamlink', '--http-proxy', wholeproxy, source.get(), 
+
+	while true:
+
+    	wholeproxy = proxy.get()+":"+port.get()
+    	destination = destlink.get()+destkey.get()
+    	_streamlink_process = subprocess.Popen(('streamlink', '--http-proxy', wholeproxy, source.get(), 
                                             'best', '-o', '-'), stdout=subprocess.PIPE) 
-    _ffmpeg_process = subprocess.Popen(('ffmpeg', '-i', '-', '-acodec', 'aac' ,'-vcodec','copy', '-f','flv',
+   		_ffmpeg_process = subprocess.Popen(('ffmpeg', '-i', '-', '-acodec', 'aac' ,'-vcodec','copy', '-f','flv',
                                         destination ), stdin=_streamlink_process.stdout) #Try both aac and copy for acodec |||| USE -bsf when prompted if using ffmpeg3
+   		time.sleep(5)
     
     
     
@@ -93,8 +98,8 @@ def startup():
     
 CykaForm.title('Pilipili Resistance presents')
 canvas = Canvas(CykaForm, width = 500, height = 150)           
-imgdonate = PhotoImage(file="donate.gif")      
-canvas.create_image(0,0, anchor=NW, image=imgdonate) 
+  
+
 
 LblPxy = Label(CykaForm, text="http proxy用于访问YouTube的http代理")
 EntPxy = Entry(CykaForm, textvariable=proxy)
