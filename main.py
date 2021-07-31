@@ -69,6 +69,7 @@ from tkinter import *
 from tkinter import messagebox
 import os
 import time
+import re
 
 CykaForm = Tk()
 
@@ -82,19 +83,37 @@ destlink = StringVar()
 destkey = StringVar()
 
 def startup():
+	sourceconverted = source.get()
+
 
 	if (proxy.get() == "" or port.get() == "" or source.get() == "" or destlink.get() == "" or destkey.get() == ""):
 		messagebox.showinfo("你没填完整啊", "空着干嘛？")
+		return
 
+	try:
+		val = int(port.get())
+	except ValueError:
+		messagebox.showinfo("你端口填的不对啊", "端口咋能有字母呢？")
+		return
+
+	val = int(port.get())
+	if (val > 65353 or val < 0):
+		messagebox.showinfo("你端口填的不对啊", "端口必须在0和63353之间")
+		return
+
+
+	if ("youtu.be" in source.get()):
+		sourceconverted = source.get().replace("youtu.be/", "www.youtube.com/watch?v=")
+		print(sourceconverted)
+	
 	while True:
-
 		wholeproxy = proxy.get()+":"+port.get()
 		destination = destlink.get()+destkey.get()
-		_streamlink_process = subprocess.Popen(('streamlink.bat', '--http-proxy', wholeproxy, source.get(), 
-                                            'best', '-o', '-'), stdout=subprocess.PIPE) 
+		_streamlink_process = subprocess.Popen(('streamlink.bat', '--http-proxy', wholeproxy, sourceconverted, 
+   	                                        'best', '-o', '-'), stdout=subprocess.PIPE) 
 		print("asdf")
 		_ffmpeg_process = subprocess.Popen(('ffmpeg/ffmpeg.exe', '-i', '-', '-acodec', 'aac' ,'-vcodec','copy', '-f','flv',
-                                        destination ), stdin=_streamlink_process.stdout) #Try both aac and copy for acodec |||| USE -bsf when prompted if using ffmpeg3
+   	                                    destination ), stdin=_streamlink_process.stdout) #Try both aac and copy for acodec |||| USE -bsf when prompted if using ffmpeg3
 		time.sleep(5)
     
     
