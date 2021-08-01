@@ -1,4 +1,7 @@
 # BiliBili_Global_Streaming_Project_Katyusha
+
+![Alt text](ChenRui.jpg)
+
 进来先喊三句   
 
 陈睿，你妈什么时候死啊   
@@ -8,6 +11,8 @@
 陈睿，你妈什么时候死啊   
 
 睿孝子、批小将谢绝使用此软件，谢谢茄子  
+
+
 
 尝试解决海外主播无法在哔哩哔哩直播的“系统升级中”问题  
 [![996.icu](https://img.shields.io/badge/link-996.icu-red.svg)](https://996.icu)
