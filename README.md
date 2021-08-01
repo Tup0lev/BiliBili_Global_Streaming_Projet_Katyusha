@@ -25,7 +25,7 @@
 人员需求：肉身在海外的主播，肉身在中国的转播MAN（港澳台等批哩批哩不让你播的地方是不可以的）    
 主播的软、硬件需求：同批哩批哩给的需求  
 转播MAN的硬件需求：近10年出厂的个人电脑  
-转播MAN的软件依赖：不老掉牙的Windows, Mac OS X 或Linux（小 心 a p t）,只要能运行 Python3, Streamlink1.3.1+, ffmpeg4+就行 连接速度10Mbps以上 丢包低的梯子 梯子越快越好
+转播MAN的软件依赖：不老掉牙的Windows, Mac OS X 或Linux（小 心 a p t）,~~只要能运行 Python3, Streamlink1.3.1+, ffmpeg4+就行~~（需要的软件已经打包） 连接速度10Mbps以上 丢包低的梯子 梯子越快越好
   
 主播的准备工作  
   
@@ -37,19 +37,10 @@
   
 首次运行前的配置工作
 此教程仅适用windows 其他平台大同小异请自己解决  
-下载本项目为zip并解压缩  
-安装python 3  
-	打开 https://www.python.org/downloads/ 下载并安装一个和你操作系统相符的python 3  
-  
-安装streamlink  
-	打开https://github.com/streamlink/streamlink/releases/tag/1.4.1 下载并安装streamlink  
-安装FFMPEG  
-	打开https://ffmpeg.zeranoe.com/builds/ 下载ffmpeg  
-	解压下载好的zip，打开并前往bin文件夹，将ffmpeg.exe复制粘贴到本项目的文件夹里  
-配置工作完毕  
+下载本项目为zip并解压缩   
   
 每次转播时的工作  
-  
+双击start.bat运行本软件
 运行你用来看YouTube的梯子，并找到你梯子的http代理地址和端口（如果是本机则地址是http://127.0.0.1) 如果你找不到端口可以去问梯子的客服 
 打开本项目文件夹，双击main.py运行  
 在相应的地方填好代理地址和端口 （例格式：地址 http://127.0.0.1 端口 114 （不要照抄例子））
