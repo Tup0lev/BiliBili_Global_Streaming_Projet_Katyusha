@@ -70,6 +70,9 @@ from tkinter import messagebox
 import os
 import time
 import re
+import urllib.request
+import socket
+import urllib.error
 
 CykaForm = Tk()
 
@@ -82,6 +85,24 @@ source = StringVar()
 destlink = StringVar()
 destkey = StringVar()
 
+def is_bad_proxy(pip):    
+    try:
+        proxy_handler = urllib.request.ProxyHandler({'http': pip})
+        opener = urllib.request.build_opener(proxy_handler)
+        opener.addheaders = [('User-agent', 'Mozilla/5.0')]
+        urllib.request.install_opener(opener)
+        req=urllib.request.Request('http://www.google.com')  # change the URL to test here
+        sock=urllib.request.urlopen(req)
+    except urllib.error.HTTPError as e:
+        print('Error code: ', e.code)
+        return e.code
+    except Exception as detail:
+        print("ERROR:", detail)
+        return True
+    return False
+
+
+
 def startup():
 	sourceconverted = source.get()
 
@@ -89,6 +110,8 @@ def startup():
 	if (proxy.get() == "" or port.get() == "" or source.get() == "" or destlink.get() == "" or destkey.get() == ""):
 		messagebox.showinfo("你没填完整啊", "空着干嘛？")
 		return
+
+	wholeproxy = proxy.get()+":"+port.get()
 
 	try:
 		val = int(port.get())
@@ -99,6 +122,10 @@ def startup():
 	val = int(port.get())
 	if (val > 65353 or val < 0):
 		messagebox.showinfo("你端口填的不对啊", "端口必须在0和63353之间")
+		return
+
+	if (is_bad_proxy(wholeproxy)):
+		messagebox.showinfo("你的代理不给力啊", "上得了YouTube吗？")
 		return
 
 
