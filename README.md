@@ -1,6 +1,6 @@
 # BiliBili_Global_Streaming_Project_Katyusha
 
-![Alt text](ChenRui.jpg)
+
 
 进来先喊三句   
 
@@ -9,6 +9,8 @@
 陈睿，你妈什么时候死啊   
 
 陈睿，你妈什么时候死啊   
+
+![Alt text](ChenRui.jpg)
 
 睿孝子、批小将谢绝使用此软件，谢谢茄子  
 
