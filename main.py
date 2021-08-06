@@ -158,7 +158,7 @@ def startup():
 		useproxy = "--http-proxy"
 		destination = destlink.get()+destkey.get()
 
-		if (proxy.get() = ""):
+		if (proxy.get() == ""):
 			wholeproxy = ""
 			useproxy = ""
 		else:
