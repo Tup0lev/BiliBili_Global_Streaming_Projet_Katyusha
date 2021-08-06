@@ -109,7 +109,7 @@ def startup():
 
 #run some checks if some idiots filled it wrong
 	
-	if (proxy.get() == "" or port.get() == "" or source.get() == "" or destlink.get() == "" or destkey.get() == ""):
+	if ( port.get() == "" or source.get() == "" or destlink.get() == "" or destkey.get() == ""):
 		messagebox.showinfo("你没填完整啊", "空着干嘛？")
 		return
 
@@ -147,17 +147,26 @@ def startup():
 		sourceconverted = source.get() + "/live"
 		print(sourceconverted)
 
-	
+	if (proxy.get() = ""):
+		messagebox.showinfo("你没填代理", "如果不使用代理的话请无视此警告")
+		wholeproxy = ""
+
 	while True:
 		
 
 		wholeproxy = proxy.get()+":"+port.get()
+		useproxy = "--http-proxy"
 		destination = destlink.get()+destkey.get()
 
-
+		if (proxy.get() = ""):
+			wholeproxy = ""
+			useproxy = ""
+		else:
+			useproxy = "--http-proxy"
+			wholeproxy = proxy.get()+":"+port.get()
 
 		print (sourceconverted)
-		_streamlink_process = subprocess.Popen(('C:/Program Files (x86)/Streamlink/bin/streamlink.exe', '--http-proxy', wholeproxy, sourceconverted, 'best', '-o', '-'), stdout=subprocess.PIPE)
+		_streamlink_process = subprocess.Popen(('C:/Program Files (x86)/Streamlink/bin/streamlink.exe', useproxy, wholeproxy, sourceconverted, 'best', '-o', '-'), stdout=subprocess.PIPE)
 		print("asdf")
 		_ffmpeg_process = subprocess.Popen(('ffmpeg/ffmpeg.exe', '-i', '-', '-acodec', 'aac' ,'-vcodec','copy', '-f','flv',
    	                                    destination ),stdin=_streamlink_process.stdout)
@@ -172,7 +181,7 @@ def startup():
 CykaForm.title('自动土法转播器')
 canvas = Canvas(CykaForm, width = 500, height = 150)
 
-LblPxy = Label(CykaForm, text="用于访问YouTube的梯子代理链接")
+LblPxy = Label(CykaForm, text="用于访问YouTube的梯子代理链接 如果不使用代理请留空")
 EntPxy = Entry(CykaForm, textvariable=proxy)
 LblPrt = Label(CykaForm, text="梯子的端口")
 EntPrt = Entry(CykaForm, textvariable=port)
