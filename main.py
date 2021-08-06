@@ -132,10 +132,15 @@ def startup():
 	if ("youtu.be" in source.get()):
 		sourceconverted = source.get().replace("youtu.be/", "www.youtube.com/watch?v=")
 		print(sourceconverted)
+
+
 	
 	while True:
 		wholeproxy = proxy.get()+":"+port.get()
 		destination = destlink.get()+destkey.get()
+
+		sourceconverted = sourceconverted + "/live"
+		print (sourceconverted)
 		_streamlink_process = subprocess.Popen(('streamlink.bat', '--http-proxy', wholeproxy, sourceconverted, 
    	                                        'best', '-o', '-'), stdout=subprocess.PIPE) 
 		print("asdf")
