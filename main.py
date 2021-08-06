@@ -147,7 +147,7 @@ def startup():
 		sourceconverted = source.get() + "/live"
 		print(sourceconverted)
 
-	if (proxy.get() = ""):
+	if (proxy.get() == ""):
 		messagebox.showinfo("你没填代理", "如果不使用代理的话请无视此警告")
 		wholeproxy = ""
 
