@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """
 Created on Sat May  2 17:50:42 2020
-
 From New York to Moskow
 to Moskow!
 ニューヨークからモスクワへ
@@ -77,7 +76,8 @@ import urllib.error
 CykaForm = Tk()
 
 
-LblTtl = Label(CykaForm, text="批哩批哩海外主播转播项目")
+LblTtl = Label(CykaForm, text="Bilibili Resistance Presents")
+LblMgl = Label(CykaForm, text="进来先喊三声 陈睿你妈死了！ 陈睿你妈死了！ 陈睿你妈死了！")
 
 proxy= StringVar()
 port = StringVar()
@@ -103,10 +103,12 @@ def is_bad_proxy(pip):
 
 
 
+
 def startup():
-	sourceconverted = source.get()
 
 
+#run some checks if some idiots filled it wrong
+	
 	if (proxy.get() == "" or port.get() == "" or source.get() == "" or destlink.get() == "" or destkey.get() == ""):
 		messagebox.showinfo("你没填完整啊", "空着干嘛？")
 		return
@@ -121,11 +123,19 @@ def startup():
 
 	val = int(port.get())
 	if (val > 65353 or val < 0):
-		messagebox.showinfo("你端口填的不对啊", "端口必须在0和63353之间")
+		messagebox.showinfo("你端口填的不对啊", "端口必须在0和63353之间, 你好好检查下你梯子的端口到底是啥")
 		return
 
 	if (is_bad_proxy(wholeproxy)):
 		messagebox.showinfo("你的代理不给力啊", "上得了YouTube吗？")
+		return
+
+	if ("rtmp://" not in destlink.get()):
+		messagebox.showinfo("你的批站推流链接填的不对", "再检查一下")
+		return
+
+	if ( (" " in destlink.get()) or (" " in proxy.get()) or (" " in source.get()) or (" " in destlink.get()) or (" " in destkey.get()) ):
+		messagebox.showinfo("至少有一个输入框里面被你填了空格", "不许有空格不许有空格不许有空格！！！")
 		return
 
 
@@ -133,46 +143,51 @@ def startup():
 		sourceconverted = source.get().replace("youtu.be/", "www.youtube.com/watch?v=")
 		print(sourceconverted)
 
+	if ("channel" in source.get()):
+		sourceconverted = source.get() + "/live"
+		print(sourceconverted)
 
 	
 	while True:
+		
+
 		wholeproxy = proxy.get()+":"+port.get()
 		destination = destlink.get()+destkey.get()
 
-		sourceconverted = sourceconverted + "/live"
+
+
 		print (sourceconverted)
-		_streamlink_process = subprocess.Popen(('streamlink.bat', '--http-proxy', wholeproxy, sourceconverted, 
-   	                                        'best', '-o', '-'), stdout=subprocess.PIPE) 
+		_streamlink_process = subprocess.Popen(('C:/Program Files (x86)/Streamlink/bin/streamlink.exe', '--http-proxy', wholeproxy, sourceconverted, 'best', '-o', '-'), stdout=subprocess.PIPE)
 		print("asdf")
 		_ffmpeg_process = subprocess.Popen(('ffmpeg/ffmpeg.exe', '-i', '-', '-acodec', 'aac' ,'-vcodec','copy', '-f','flv',
-   	                                    destination ), stdin=_streamlink_process.stdout) #Try both aac and copy for acodec |||| USE -bsf when prompted if using ffmpeg3
+   	                                    destination ),stdin=_streamlink_process.stdout)
+
+
 		time.sleep(5)
     
     
     
 #GUI Elements
     
-CykaForm.title('Pilipili Resistance presents')
-canvas = Canvas(CykaForm, width = 500, height = 150)           
-  
+CykaForm.title('自动土法转播器')
+canvas = Canvas(CykaForm, width = 500, height = 150)
 
-
-LblPxy = Label(CykaForm, text="http proxy用于访问YouTube的http代理")
+LblPxy = Label(CykaForm, text="用于访问YouTube的梯子代理链接")
 EntPxy = Entry(CykaForm, textvariable=proxy)
-LblPrt = Label(CykaForm, text="port端口")
+LblPrt = Label(CykaForm, text="梯子的端口")
 EntPrt = Entry(CykaForm, textvariable=port)
-LblUtb = Label(CykaForm, text="source转播源 请复制YouTube链接或短链")
+LblUtb = Label(CykaForm, text="转播源 请复制YouTube直播链接或短链，或者主播的YouTube频道链接")
 EntUtb = Entry(CykaForm, textvariable=source)
-LblDsl = Label(CykaForm, text="destlink批哩批哩直播链接")
+LblDsl = Label(CykaForm, text="批哩批哩直播链接")
 EntDsl = Entry(CykaForm, textvariable=destlink)
-LblDsk = Label(CykaForm, text="destkey批哩批哩直播码")
+LblDsk = Label(CykaForm, text="批哩批哩直播码")
 EntDsk = Entry(CykaForm, textvariable=destkey)
 BtnSet = Button(CykaForm, text="start开始", command=startup)
 
 LblTtl.pack()
+LblMgl.pack()
 
 canvas.pack()
-LblTtl.pack()
 LblPxy.pack()
 EntPxy.pack()
 LblPrt.pack()
@@ -184,4 +199,6 @@ EntDsl.pack()
 LblDsk.pack()
 EntDsk.pack()
 BtnSet.pack()
+
 CykaForm.mainloop()
+
